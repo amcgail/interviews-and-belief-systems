@@ -1,0 +1,327 @@
+"You told me that you had four brothers and two sisters?"
+	confirm_told_me 
+		([P] has [4] brothers)
+		([P] has [2] sisters)
+
+"That's - three - yes two sisters - that's seven all together. Yes, that's right."
+
+"Could I get the order they were born and the spaces between them."
+	get_order_siblings [S1] [S2] [S3] [S4] [B1] [B2]
+
+"Oh yes, I see."
+
+"The first one was Grace?"
+	confirm_first_child [S3]
+
+"Yes. She was born in 1890."
+
+"And then I think eleven months later you and your twin were born?"
+	confirm:
+		relative_birthdate [S3] [S1] [11 months]
+	confirm:
+		relative_birthdate [S3] [S4] [11 months]
+
+"Us - us twins come along - 1892."
+
+"Then who was the next one?"
+	request [person]:
+		sibling_order_next [S1] [person]
+
+"My brother - Alfred - he's - he was killed in the - well, we don't know what happened to him whatever and I know I was very upset because I didn't know 'til a long - I'd rheumatic fever at the time and they didn't tell me and I was upset to think that they should send that telegram to my mother on armistice day. Yes."
+
+"And after him?"
+	request [person]:
+		sibling_order_next [S2:"Alfred"] [person]
+
+"Came my brother Fred. That's about four years afterwards. It was."
+
+"How many years after you was your brother….?"
+"Alfred born?"
+	comfirm:
+		sibling_order_lt ["you"] [S2:"Alfred"]
+	request [time-range]:
+		relative_birthdate ["you"] [S2:"Alfred"] [time-range]
+
+"Alfred?"
+"Yes, about four years - yes."
+
+"Wasn't there another one between Alfred and you?"
+	comfirm:
+		exists [person]:
+			sibling_order_lt ["you"] [person]
+			sibling_order_lt [person] [S2:"Alfred"]
+
+"No. He was the eldest one."
+
+"There was you then four years there was Alfred."
+	comfirm:
+		relative_birthdate ["you"] [S2:"Alfred"] [4 years]
+
+"Yes."
+
+"And then was?"
+	request [person]
+		sibling_order_next [S2:"Alfred"] [person]
+
+"My brother Fred."
+
+"What was his full name - Frederick?"
+	request [name]
+		has_full_name [Fredrick] [name]
+
+"Frederick William - yes - he's a stockbroker."
+
+"And he was how much after Alfred?"
+	request [time-range]:
+		relative_birthdate [Frederick] [Alfred] [time-range]
+
+"About four years I should think. Yes."
+
+"And then there was Arthur and Gilbey was there?"
+	confirm:
+		sibling_order_lt [Alfred] [Arthur] 
+		sibling_order_lt [Alfred] [Gilbey]
+
+"Arthur and Gilbey then."
+
+"And there was also about four years between was there?"
+	confirm:
+		relative_birthdate [Arthur] [Gilbey] [about 4 years]
+
+"In between - yes - in between mother had them."
+
+"Do you know how old your father was when you were born?"
+	request [age]:
+		age_at_date [person:your father] [age:age] [date:your birthdate]
+
+"Let me see - he was eighty-one when he died I know - they were only young because they got - they got married at eighteen and dad nineteen so - they were both young so …….."
+
+"And they had Grace quite soon then?"
+	confirm:
+		birth_date [Grace] [birthAge]
+		is_quite_short (date_diff [marriageAge] [birthAge])
+
+"Oh yes, nine months you see."
+	statement 1:
+		IF: birth_date [Grace] [birthAge]
+		THEN: is_quite_short (date_diff [marriageAge] [birthAge])
+	statement 2:
+		IF: birth_date [Grace] [birthAge]
+		THEN: equals (date_diff [marriageAge] [birthAge]) [nine months]
+		
+
+"So that they were quite young when you were born?"
+	confirm:
+		"were quite young when" [your parents] [your birth]
+
+"Oh yes, yes."
+	statement 1:
+		"were quite young when" [your parents] [your birth]
+
+"Did your father after he - was he a chimney sweep - in charge at the chimney sweeping business until the end of his working life?"
+
+"He was - he was really at first - he was the messenger of the Houses of Parliament in those days he had to run to give a - yes."
+
+"And then he worked for Doultons china?"
+
+"That's right."
+
+"And he was a tea taster too?"
+
+"Yes, that's right."
+
+"What sort of work was he doing when he was in Doultons china?"
+
+"I couldn't tell you - he wasn't there long I don't think. No."
+
+"After he went into the chimney sweeping ….."
+
+"Yes, he went in for that he thought oh well, I don't know I - it seems a good business, you know. So he went in for it and he - he got on but he wasn't trained or nothing you know - he started and he - got on - he got another man with him and then he had to leave there to go to - Bournes of Kender Street - in King - used to be King Street and 'course grandmother she'd lost the contract 'course dad he said I'll sell my business up - go and help granny because you see the other man that - the uncle - uncle - Uncle Siddy or something it was called and he got run over by a tractor - one of these steam tractors and so of course we had to sell up and go and help the grandmother you see."
+	OMG this is amazing.
+	Talk about a structure of beliefs. Of statements.
+
+"And that's when you moved to King Street?"
+
+"Yes."
+
+"And when the lease expired there was the business over then?"
+
+"Oh no, oh no. Not for some time."
+
+"So did your father ever have another job after he went into the chimney sweeping?"
+
+"No, no. He had the men you see, trained men knew all about it then he was a like a retire from that you see and all the men - used to have about twenty of them all together - from the different people around and different districts used to be chimney sweeps of a night time they used to come and do the work you see. Or some of them - used to about - used to have about seven regular ones you see."
+
+"Did he ever have any part time jobs that you know of?"
+
+"No. No, no."
+
+"Do you ever remember him being out of work?"
+
+"No. no. no. No."
+
+"Did your mother have a job before she married?"
+
+"No."
+
+"She just lived with your grannie."
+
+"Used to live with my grandmother - yes - she was at Dulwich."
+
+"And after she married did she ever have a job of any kind?"
+
+"No. Never went out to work - no. She had …."
+
+"Did she help at all in the business?"
+
+"Well, I tell you what she had to - open the door every time for people that come to visit, you see."
+
+"There must have been quite a lot of coming and going?"
+
+"Yes, that was the people all around the district but the other was Government work you see, that was nothing to but people around the district they used to come and see and ask for the sweep."
+
+"But that was all she did in connection with the business?"
+
+"Yes. That's right dear."
+
+"You mentioned that when you went on holiday to Yarmouth once you had I think you said a friend that was lodging with you?"
+
+"Oh mr - Mr - Mr Wilkins - used to help ..."
+
+"Where was that that you were living when he was lodging with you?"
+
+"Oh he came to - to a - oh to Crowndale Road - he come to Crowndale Road that's right."
+
+"Was he a relation?"
+
+"No, just a friend of dad's you see."
+
+"How long did he lodge with you?"
+
+"Oh, some time. 'Til he - he - got - of course he had to come and lodge with use because he'd lost his brother you see and mother wouldn't - he couldn't - we would have him with us you see 'cos there was enough room - five bedrooms that was enough you see."
+
+"Did you ever have any lodgers in any of your other homes?"
+
+"No, no, never."
+
+"You mentioned that you had a woman who came in to do the washing?"
+
+"Oh yes. That's right. My mum did."
+
+"Did you have anybody else coming in to help in the house?"
+
+"At times she did - when - when - before I was left school you see she used to have a woman come in you see - at the beginning of the week to do the rooms."
+
+"How many times a week would the woman come in?"
+
+"Only once - yes."
+
+"On the other days did your mother do cleaning - did she have a routine of set things on set days?"
+
+"Oh yes, she used to - you know - like I do - just make the beds and hoover see. 'til I - 'til I left school then I - my sister and I used to help you see. For the time - there's all - eight rooms you see, oh the two rooms was for the men that's right - yes, that's right. Six rooms really."
+
+"And you also mentioned that in the photograph you had a blouse that you thought perhaps your sister had made?"
+
+"She did - yes. I've got that - I've got that photograph."
+
+"Did your mother make all your clothes?"
+
+"She used to do a good bit - you see she has made some cloaks and bonnets. Used to make them nice too - and all our you know dresses - yes."
+
+"Were any of the clothes bought?"
+
+"Oh yes. We had it for the boys you see and that used to be along where the - where the Euston tube station - where the Euston station is - not Euston station - down by Euston Road there on the corner used to be called Watts and something."
+
+"Was that a stall or a shop?"
+
+"No, it was another shop - yes - very nice shop."
+
+"Did she buy your shoes from the same place?"
+
+"No, no. No, she used to go in the club - yes."
+
+"The boot club?"
+
+"Yes. And that was up at Dickses up in the Camden High Street."
+
+"Did she pay in regularly for the club?"
+
+"Oh yes, yes, oh yes."
+
+"How often was that?"
+
+"Well, I - I - I - what I can remember - some time - she said I'll put them - put a few shillings away for shoes because there's seven of us. Of course, my sister Grace, she went and lived with my grandmother you see, when us twins was born. It was too much 'cos we was fed on the bottle you see and we was long to you know - things we hadn't - she couldn't manage it you see."
+
+"For the club she didn't have to put in every single week though?"
+
+"Oh she wanted too yes. She used to go up there I suppose you know for the shoes or whatever it was up there 'cos there was a good many of us to go up there see, yes, we always - we always had our three pairs of shoes - we had one - used to have a Saturday pair of shoes from our day ones and also at Sunday times."
+
+"Day ones, Saturday ones and Sunday ones?"
+
+"Yes, yes, yes."
+
+"Did you have different clothes on Saturdays from what you had in the week?"
+
+"Yes, we used to keep - our other ones from school used to have a - another dress."
+
+"And then on Sundays?"
+
+"Oh yes, we had to have another dress for Sun - and we had not - our petticoat - oh, and pinafores you know."
+
+"You mentioned that your father used to clean the shoes?"
+
+"Yes, he did. We used - we used to have kind of boots. - no, kind of a - bookcase - Bookcase - and used to - he used to clean them - used to be ….."
+
+"Everybody's?"
+
+"Yes. Yes, yes, yes."
+
+"Did he do anything else in the house?"
+
+"Oh he would do - he used to keep up them - used to have to bring - we had like a pile you see to the office and he'd write all his tickets out you see I think 'cos they had to have a pass you see to go in these Government places and he had a lot - a lot of work to do there - and when the accounts come in you see there'd be a quarter - oh he had a lot to do - and it was beautifully done - oh he did write lovely."
+
+"So he worked very long hours did he?"
+
+"Oh he did have to certain times you know."
+
+"Would he be working most evenings?"
+
+"No, he used to go to the club 'cos - left the club at half past four. But he used to do the windows for mother you see - clean the windows - oh he'd do that - yes."
+
+"And anything else you can think of?"
+
+"Probably get the coal up or something like that."
+
+"What about helping with the children - did he help looking after them at all?"
+
+"No, no need to I don't think. Used to help ourselves I think. When there's a family I think they help one another don't you, really."
+
+"The older ones would help the younger ones?"
+
+"True - that's true, yes, that's true."
+
+"You don't remember him putting you to bed or dressing you?"
+
+"Oh no. No."
+
+"Did you have any set tasks you had to do to help your mother and father?"
+
+"No, well, well, I used to when I went - mother used to say - well, now I want you to get the teas for the children 'cos I'm having company downstairs and then she'd be down there and we used to be up in the kitchen you see. I loved doing that - we used to - wash the - my brothers or something like that you know like that."
+
+"Used to wash them?"
+
+"Yes, every Saturday. I used to like doing it you know."
+
+"I remember you said the brother that died - you used to take him out."
+
+"Oh he was lovely."
+
+"Did the younger ones help the older ones in anyway - would they do anything for them?"
+
+"I don't think so - no, no."
+
+"Do you remember your mother and father telling you stories or reading stories to you or that sort of thing?"
+
+"No, no. We used to have books you see - story books."
+
+"Your father liked you to be in ten o'clock?"
