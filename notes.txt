@@ -1,0 +1,10 @@
+input(">>") !!! who knew you could ask for python code to be input?
+
+What sort of conversations do I imagine being had with this thing?
+Maybe I should just write them out (or act them out)...
+
+(Greeting sequence)
+Hey there
+Hi! What's up?
+Nothing much, and yourself?
+I'm literally doing nothing.
